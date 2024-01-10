@@ -17,8 +17,11 @@ def iniciar_driver(site_url=None, detach=False, sleep_mode=False):
         '--no-default-browser-check', # Desabilita a busca pelo browser default
         '--window-position=36,68', # Define o posicionamento da janela 
         '--window-size=800,600', # Define a resolucao da janela larguraXaltura
+        # '--headless', # Roda em segundo plano (com janela fechada)
+        # '--incognito', # Inicia janela no modo anonimo
+        # '--lang=en-US', # Define o idioma de inicializacao em ingles 
     ]
-
+    
     for argument in arguments:
         options.add_argument(argument)
     
@@ -53,6 +56,6 @@ def iniciar_driver(site_url=None, detach=False, sleep_mode=False):
 
 
 if __name__ == '__main__':
+    # iniciar_driver(detach=True)
     # iniciar_driver(site_url='https://facebook.com', sleep_mode=True)
-    # iniciar_driver(site_url='https://facebook.com', detach=True)
-    iniciar_driver(detach=True)
+    iniciar_driver(site_url='https://facebook.com', detach=True)
