@@ -37,7 +37,7 @@ arguments = [
     '--window-size=700,600',  # Define a resolucao da janela larguraXaltura
 ]
 # NOTE:
-# For more switches, please read the `most-used-arguments-list.md`
+# For more switches, please read the `02_webdriver-options.md`
 
 for argument in arguments:
     options.add_argument(argument)
