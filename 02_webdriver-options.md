@@ -16,7 +16,6 @@ and descriptions. Last automated update occurred on 2024-01-07.
 arguments = [
     '--block-new-web-contents', # Bloqueia pop-ups
     '--disable-notifications', # Desabilita notificacoes
-    '--enable-automation', # Habilita inficacao que o browser esta sendo controlado por automacao
     '--headless', # Roda em segundo plano (com janela fechada)
     '--incognito', # Inicia janela no modo anonimo
     '--lang=en-US', # Define o idioma de inicializacao em ingles 
@@ -26,6 +25,34 @@ arguments = [
     '--window-size=600,600', # Define a resolucao da janela largura X altura
 ]
 ```
+
+
+## Experimental Options
+
+
+```python
+# manter a janela aberta apos o script
+options.add_experimental_option('detach', True)
+
+# desabilitar pop-up de navegador controlado por automacao
+options.add_experimental_option('excludeSwitches', ['enable-automation'])
+
+# setar preferencias do navegador:
+options.add_experimental_option('prefs', {
+    # downloads: alterar o local de downloads de arquivos
+    'download.default_directory': 'C:\\path\\to\\download',
+    # downloads: notificar o google crhome sobre alteracao
+    'download.directory_upgrade': True,
+    # downloads: desabilitar a confirmacao de download
+    'download.prompt_for_download': False,
+    # downloads: permitir multiplos downloads
+    'profile.default_content_setting_values.automatic_downloads': 1,
+    # notificacoes: desabilitar notificacoes
+    'profile.default_content_setting_values.notifications': 2,
+})
+```
+
+
 
 
 ## Reference

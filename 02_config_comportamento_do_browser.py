@@ -29,7 +29,7 @@ arguments = [
     '--block-new-web-contents',  # Bloqueia pop-ups
     '--disable-notifications',  # Desabilita notificacoes
     # Habilita inficacao que o browser esta sendo controlado por automacao
-    '--enable-automation',
+    # '--enable-automation',
     # '--lang=pt-BR', # Define o idioma de inicializacao em portugues
     '--lang=en-US',  # Define o idioma de inicializacao em portugues
     '--no-default-browser-check',  # Desabilita a busca pelo browser default
@@ -45,8 +45,13 @@ for argument in arguments:
 
 # 4. Adicionando configuracoes experimentais:
 
-# manter a janela aberta apos o script
+    # manter a janela aberta apos o script
 options.add_experimental_option('detach', True)
+
+    # desabilitar pop-up de navegador controlado por automacao
+options.add_experimental_option('excludeSwitches', ['enable-automation'])
+
+    # setar preferencias do navegador:
 options.add_experimental_option('prefs', {
     # downloads: alterar o local de downloads de arquivos
     'download.default_directory': 'C:\\path\\to\\download',
