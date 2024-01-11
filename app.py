@@ -28,6 +28,9 @@ def iniciar_driver(site_url=None, detach=False, sleep_mode=False, zoom_level=1.0
     # manter janela aberta
     if detach == True:
         options.add_experimental_option('detach', True)
+
+    # desabilitar pop-up de navegador controlado por automacao
+    options.add_experimental_option('excludeSwitches', ['enable-automation'])
     
     options.add_experimental_option('prefs', {
         # downloads: alterar o local de downloads de arquivos
