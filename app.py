@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
-def iniciar_driver(site_url=None, detach=False, sleep_mode=False):
+def iniciar_driver(site_url=None, detach=False, sleep_mode=False, zoom_level=1.0):
     options = ChromeOptions()
 
     arguments = [
@@ -48,6 +48,8 @@ def iniciar_driver(site_url=None, detach=False, sleep_mode=False):
     )
 
     driver.get(site_url)
+
+    driver.execute_script(f'document.body.style.zoom="{zoom_level}"')
     
     if sleep_mode == True:
         sleep(10)
@@ -58,4 +60,4 @@ def iniciar_driver(site_url=None, detach=False, sleep_mode=False):
 if __name__ == '__main__':
     # iniciar_driver(detach=True)
     # iniciar_driver(site_url='https://facebook.com', sleep_mode=True)
-    iniciar_driver(site_url='https://facebook.com', detach=True)
+    iniciar_driver(site_url='https://facebook.com', detach=True, zoom_level=.75)
