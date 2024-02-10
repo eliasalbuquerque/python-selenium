@@ -7,13 +7,27 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 import logging.config
+import traceback
 
 
 # configurando logging:
 logging.config.fileConfig(fname='config.ini', disable_existing_loggers=False)
 
 
-def iniciar_driver(site_url=None, detach=False, sleep_mode=False, zoom_level=1.0):
+def scroll_pagina(driver, pixels):
+    logger = logging.getLogger(__name__)
+
+    try:
+        driver.execute_script("window.scrollTo(0, arguments[0]);", pixels)
+        sleep(1)
+    except Exception as e:
+        logger.error(f'Erro ao rolar página:\n- {type(e).__name__}: {e}'
+            f'Stack trace: {traceback.format_exc()}'
+        )
+        print(f'Erro ao rolar página: {type(e).__name__}')
+
+
+def iniciar_driver(site_url=None, detach=False, delay=False, headless=False, zoom_level=1.0):
     logger = logging.getLogger(__name__)
     try:
         options = ChromeOptions()
@@ -32,6 +46,10 @@ def iniciar_driver(site_url=None, detach=False, sleep_mode=False, zoom_level=1.0
 
         for argument in arguments:
             options.add_argument(argument)
+
+        # rodar em segundo plano
+        if headless == True:
+            options.add_argument('--headless')
 
         # manter janela aberta
         if detach == True:
@@ -66,7 +84,7 @@ def iniciar_driver(site_url=None, detach=False, sleep_mode=False, zoom_level=1.0
 
         driver.execute_script(f'document.body.style.zoom="{zoom_level}"')
 
-        if sleep_mode == True:
+        if delay == True:
             sleep(10)
 
         return driver
