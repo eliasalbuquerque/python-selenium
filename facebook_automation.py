@@ -22,7 +22,7 @@ from selenium.webdriver.common.keys import Keys
 
 # iniciar drive
 def acessar_site(site):
-    driver = iniciar_driver(site_url=site, detach=True, zoom_level=.75)
+    driver, wait = iniciar_driver(site_url=site, detach=True, zoom_level=.75)
     return driver
     sleep(random.randint(1, 5))
 
