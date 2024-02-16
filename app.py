@@ -30,14 +30,17 @@ def iniciar_driver(
         options = ChromeOptions()
 
         arguments = [
-            '--block-new-web-contents',  # Bloqueia pop-ups
-            '--disable-notifications',  # Desabilita notificacoes
-            '--lang=pt-BR',  # Define o idioma de inicializacao em portugues
-            '--no-default-browser-check',  # Desabilita a busca pelo browser default
-            '--window-position=36,68',  # Define o posicionamento da janela
-            '--window-size=700,600',  # Define a resolucao da janela larguraXaltura
-            # '--incognito', # Inicia janela no modo anonimo
-            # '--lang=en-US', # Define o idioma de inicializacao em ingles
+            # bloqueia: pop-ups
+            '--block-new-web-contents',
+            # desabilita: notificaoes, busca browser default
+            '--disable-notifications',
+            '--no-default-browser-check',
+            # define: idioma, posicao da janela, resolucao
+            '--lang=pt-BR',
+            '--window-position=36,68',
+            '--window-size=780,600',
+            # para rodar na aws ec2:
+            # '--disable-gpu', '--no-sandbox', '--headless', '--disable-dev-shm-usage'
         ]
 
         for argument in arguments:
@@ -90,7 +93,7 @@ def iniciar_driver(
         # montando wait
         wait = WebDriverWait(
             driver,
-            10,
+            13,
             poll_frequency=1,
             ignored_exceptions=[
                 NoSuchElementException,
